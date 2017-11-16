@@ -3,8 +3,10 @@
 <head>
 	<title>Wistful Vista Apartments</title>
 
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script src="nav.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/styles.css?<?php echo time(); ?>">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/nav.js"></script>
 </head>
 <body>

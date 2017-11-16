@@ -7,7 +7,6 @@ html, body{
   background-size:cover;
   position:relative;
   height:100vh;
-	z-index: 1;
 }
 
 .header{
@@ -34,21 +33,43 @@ html, body{
 	height: 400px;
 }
 
-.example3{
-	width: 100%;
+.navbar-brand {
+    font-size: 24px;
 }
 
-.example3 .navbar-brand {
-  height: 80px;
+.navbar-container {
+    padding: 20px 0 20px 0;
 }
 
-.example3 .nav >li >a {
-  padding-top: 30px;
-  padding-bottom: 30px;
+.navbar.navbar-fixed-top.fixed-theme {
+    background-color: #222;
+    border-color: #080808;
+    box-shadow: 0 0 5px rgba(0,0,0,.8);
 }
-.example3 .navbar-toggle {
-  padding: 10px;
-  margin: 25px 15px 25px 0;
+
+.navbar-brand.fixed-theme {
+    font-size: 18px;
+}
+
+.navbar-container.fixed-theme {
+    padding: 0;
+}
+
+.navbar-brand.fixed-theme,
+.navbar-container.fixed-theme,
+.navbar.navbar-fixed-top.fixed-theme,
+.navbar-brand,
+.navbar-container{
+    transition: 0.8s;
+    -webkit-transition:  0.8s;
+}
+
+.navbar-toggle{
+	z-index: 1;
+}
+
+.navbar a{
+	color: #fff;
 }
 
 /* The navigation bar */
