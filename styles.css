@@ -1,0 +1,79 @@
+html{
+
+}
+
+body{
+	margin: 0;
+}
+
+#hero{
+  background-image:url(views/images/hero-img.jpg);
+  background-size:cover;
+  position:relative;
+  height:100vh;
+}
+
+.header{
+  position:absolute;
+  top:50%;
+  text-align:center;
+  width:100%;
+  color:#fff;
+  font-size:28px;
+  -ms-transform: translate(0,-50%); /* IE 9 */
+    -webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%);
+}
+
+.header h1{
+	background-color: rgba(0,0,0,0.5);
+    max-width: 50%;
+    padding: 30px 0px;
+    margin: 0 auto;
+}
+
+.main{
+	height: 400px;
+}
+
+
+/* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: transparent;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1;
+    height: 80px;
+}
+
+.navbar.solid{
+	background-color: rgba(0,0,0,0.3) !important;
+	transition-timing-function: ease-in;
+  	transition: 0.7s;
+}
+
+.navbar .nav-left{
+	float: left;
+}
+
+.navbar .nav-right{
+	float: right;
+}
+
+/* Links inside the navbar */
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 30px 15px;
+    text-decoration: none;
+}
+
+.navbar .nav-left a {
+    padding-top: 15px;
+}
+
+
