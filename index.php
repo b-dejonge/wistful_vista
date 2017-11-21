@@ -1,9 +1,43 @@
-<?php 
+<?php
 
-include 'views/header.php';
+if (isset($_GET['action']))
+    $action = $_GET['action'];
 
-include 'views/homepage.php';
+  else if (isset($_POST['action']))
+    $action = $_POST['action'];
 
-include 'views/footer.php';
+  else
+    $action = 'homepage';
+
+  if($action == 'homepage'){
+    include ('views/homepage.php');
+  }
+
+  else if($action == 'login'){
+    include('views/login.php');
+  }
+
+  else if($action == 'dashboard'){
+    include ('views/dashboard.php');
+  }
+
+  else if($action == 'payments'){
+    include ('views/payments.php');
+  }
+
+  else if($action == 'maintenance'){
+    include ('views/maintenance.php');
+  }
+
+  else if($action == 'contact'){
+    include ('views/contact.php');
+  }
+
+  else if($action == 'apartments'){
+    include ('views/apartments.php');
+  }
+
+  else
+  echo 'error';
 
 ?>

@@ -12,9 +12,9 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="index.php?action=dashboard"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Dashboard</span></a></li>
+                        <li><a href="index.php?action=dashboard"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Dashboard</span></a></li>
                         <li><a href="index.php?action=payments"><i class="fa fa-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Payments</span></a></li>
-                        <li><a href="index.php?action=maintenance"><i class="fa fa-support" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Maintenance</span></a></li>
+                        <li class="active"><a href="index.php?action=maintenance"><i class="fa fa-support" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Maintenance</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -73,25 +73,7 @@
                 <div class="user-dashboard">
                     <h1>Hello, User</h1>
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12 gutter">
-
-                            <div class="sales">
-                                <h2>Your Payments</h2>
-
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>Period:</span> Last Year
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="#">2012</a>
-                                        <a href="#">2014</a>
-                                        <a href="#">2015</a>
-                                        <a href="#">2016</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 gutter">
+                        <div class="col-md-12 col-sm-12 col-xs-12 gutter">
 
                             <div class="sales report">
                                 <h2>Maintenance</h2>

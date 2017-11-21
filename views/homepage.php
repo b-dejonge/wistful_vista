@@ -1,17 +1,6 @@
-<!-- <div class="hero">
-	<img class="hero-img" src="views/images/hero-img.jpg" alt="apartment view">
-</div> -->
-<!-- <div class="navbar">
-	<div class="nav-left">
-		<a href="https://placeholder.com"><img src="http://via.placeholder.com/250x50"></a>
-	</div>
-	<div class="nav-right">
-		<a href="#">Home</a>
-		<a href="#">Apartments</a>
- 		<a href="#">Take a Tour</a>
-		<a href="#">Login</a>
-	</div>
-</div> -->
+<?php include 'views/header.php'; ?>
+<script src="js/nav.js"></script>
+<body>
 <nav id="header" class="navbar navbar-default navbar-fixed-top">
     <div id="header-container" class="container navbar-container">
         <div class="navbar-header">
@@ -21,13 +10,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a id="brand" class="navbar-brand" href="#">Project name</a>
+            <a id="brand" class="navbar-brand" href="#"><img class="brand-img" alt=""></a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar" class="collapse navbar-collapse right">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="index.php">Home</a></li>
+                <li><a href="index.php?action=apartments">Apartments</a></li>
+                <li><a href="index.php?action=contact">Contact</a></li>
+                <li><a href="index.php?action=login">Login</a></li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
@@ -43,3 +33,7 @@
 <div class="main">
 
 </div>
+
+</body>
+
+<?php include 'views/footer.php'; ?>
