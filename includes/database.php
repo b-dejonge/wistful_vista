@@ -15,7 +15,7 @@
   $dbServername = "localhost";
   $dbUsername = "root";
   $dbPassword = "";
-  $dbName = "wistful_vista";
+  $dbName = "Wistful_Vista";
 
   $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 ?>

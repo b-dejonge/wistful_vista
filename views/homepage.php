@@ -17,7 +17,7 @@
                 <li class="active"><a href="index.php">Home</a></li>
                 <li><a href="index.php?action=apartments">Apartments</a></li>
                 <li><a href="index.php?action=contact">Contact</a></li>
-                <li><a href="index.php?action=login">Login</a></li>
+                <li><?php if(isset($_SESSION['renterID'])){echo '<form action="includes/logout.php" method="post"><button type="submit" class="nav-logout-button" name="logout-submit">Logout</button></form>';} else { echo '<a href="index.php?action=login">Login</a>';}?></li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

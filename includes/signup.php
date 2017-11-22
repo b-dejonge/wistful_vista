@@ -6,7 +6,6 @@ if (isset($_POST['register-submit'])){
   $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
   $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
   $address = mysqli_real_escape_string($conn, $_POST['address']);
-  $address2 = mysqli_real_escape_string($conn, $_POST['address2']);
   $city = mysqli_real_escape_string($conn, $_POST['city']);
   $state = mysqli_real_escape_string($conn, $_POST['state']);
   $zip = mysqli_real_escape_string($conn, $_POST['zip']);
@@ -24,7 +23,7 @@ if (isset($_POST['register-submit'])){
       header("Location: ../index.php?action=login?signup=invalidname");
       exit();
       } else {
-        $sql = "SELEECT * FROM renter WHERE username='$username'";
+        $sql = "SELECT * FROM renter WHERE username='$username'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
 
@@ -35,7 +34,8 @@ if (isset($_POST['register-submit'])){
           //Hashing the password
           $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
           //Insert the user into the database
-          $sql = "INSERT INTO renter (firstName, lastName, address, address2, city, state, zip, username, password) VALUES ('$firstName','$lastName','$address','$address2','$city','$state','$zip','$username',''$hashedPassword)";
+          $sql = "INSERT INTO renter (firstName, lastName, address, city, state, zip, username, password)
+                  VALUES ('$firstName','$lastName','$address','$city','$state','$zip','$username','$hashedPassword');";
           mysqli_query($conn, $sql);
           header("Location: ../index.php?action=dashboard");
           exit();

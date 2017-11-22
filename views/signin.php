@@ -13,7 +13,7 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-12">
-              <form id="login-form" action="#" method="post" role="form" style="display: block;">
+              <form id="login-form" action="includes/login.php" method="post" role="form" style="display: block;">
                 <h2>LOGIN</h2>
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
@@ -29,7 +29,7 @@
                         <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
                   </div>
               </form>
-              <form id="register-form" action="includes/signup.php" method="POST" role="form" style="display: none;">
+              <form id="register-form" action="includes/signup.php" method="post" role="form" style="display: none;">
                 <h2>REGISTER</h2>
                   <div class="form-group">
                     <input type="text" name="firstName" id="firstName" tabindex="1" class="form-control" placeholder="First Name*" value="">
@@ -39,9 +39,6 @@
                   </div>
                   <div class="form-group">
                     <input type="text" name="address" id="address" tabindex="1" class="form-control" placeholder="Address*" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="address2" id="address2" tabindex="1" class="form-control" placeholder="Address 2" value="">
                   </div>
                   <div class="form-group">
                     <input type="text" name="city" id="city" tabindex="1" class="form-control" placeholder="City*" value="">

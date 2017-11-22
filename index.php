@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if (isset($_GET['action']))
     $action = $_GET['action'];
 
@@ -14,11 +16,15 @@ if (isset($_GET['action']))
   }
 
   else if($action == 'login'){
-    include('views/login.php');
+    include ('views/signin.php');
   }
 
   else if($action == 'dashboard'){
-    include ('views/dashboard.php');
+    if (isset($_SESSION['renterID'])) {
+      include ('views/dashboard.php');
+    } else {
+      header("Location: index.php?action=login");
+    }
   }
 
   else if($action == 'payments'){

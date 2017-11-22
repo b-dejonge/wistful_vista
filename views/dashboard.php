@@ -54,7 +54,7 @@
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <div class="navbar-content">
-                                                    <span>Brandon DeJonge</span>
+                                                    <span><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></span>
                                                     <p class="text-muted small">
                                                         Admin
                                                     </p>
@@ -65,13 +65,14 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li><form action="includes/logout.php" method="post"><button type="submit" name="logout-submit" class="link-button"><i class="fa fa-sign-out" aria-hidden="true"></i></button></li>
                                 </ul>
                             </div>
                         </div>
                     </header>
                 </div>
                 <div class="user-dashboard">
-                    <h1>Hello, User</h1>
+                    <h1>Hello, <?php echo $_SESSION['firstName'] ?></h1>
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12 gutter">
 
