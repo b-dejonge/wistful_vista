@@ -4,7 +4,7 @@ html, body{
 }
 
 #hero{
-  background-image:url(../views/images/hero-img.jpg);
+  background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(../views/images/hero-img.jpg);
   background-size:cover;
   position:relative;
   height:100vh;
@@ -72,13 +72,17 @@ html, body{
 .nav-logout-button{
 	background: none;
 	border: none;
-	padding: 40px 15px 15px 15px;
+	padding: 37px 15px 15px 15px;
 	transition: 0.8s;
 	-webkit-transition:  0.8s;
+	color: #5584ff;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 600;
+	font-size: 18px;
 }
 
 .fixed-theme .nav-logout-button{
-	padding: 30px 15px 15px 15px;
+	padding: 27px 15px 15px 15px;
 }
 
 .link-button{
@@ -88,11 +92,10 @@ html, body{
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #000;
+    color: #5584ff;
 		font-family: 'Oswald', sans-serif;
 		font-weight: 600;
 		font-size: 18px;
-		text-shadow: 0.5px 0.5px #a5a5a5;
 }
 
 .navbar-default .navbar-nav > .active > a,
