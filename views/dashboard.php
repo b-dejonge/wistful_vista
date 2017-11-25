@@ -77,7 +77,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12 gutter">
 
                             <div class="sales">
-                                <h2>Your Payments</h2>
+                                <h2>Payments</h2>
 
                                 <div class="btn-group">
                                     <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,6 +90,51 @@
                                         <a href="#">2016</a>
                                     </div>
                                 </div>
+                                <div class='payment_container'>
+                                  <div class='row col-md-12 custyle'>
+                                  <table class='table table-striped custab'>
+                                  <thead>
+                                      <tr>
+                                          <th>ID</th>
+                                          <?php if ($_SESSION['renterID'] == 0) {
+                                            echo "<th>Name</th>";
+                                          } ?>
+                                          <th>Ammount</th>
+                                          <th>Due Date</th>
+                                      </tr>
+                                  </thead>
+                                <?php
+                                include_once 'includes/database.php';
+                                if ($_SESSION['renterID'] == 0){
+                                  $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate FROM renter, payment WHERE renter.renterID = payment.renterID ORDER BY paymentDate ASC LIMIT 5";
+                                } else {
+                                  $sql = "SELECT paymentID, paymentAmount, paymentDate FROM renter, payment WHERE renter.renterID = payment.renterID AND $_SESSION[renterID] = renter.renterID";
+                                }
+                                // $sql = "SELECT paymentID, paymentAmount, paymentDate FROM renter, payment WHERE renter.renterID = payment.renterID AND $_SESSION[renterID] = renter.renterID";
+                                $result = mysqli_query($conn, $sql);
+                                $resultCheck = mysqli_num_rows($result);
+
+                                if ($resultCheck > 0) {
+                                  while($row = $result->fetch_assoc()) {
+                                    echo"<tr>
+                                        <td>$row[paymentID]</td>";
+                                        if ($_SESSION['renterID'] == 0) {
+                                          echo "<td>$row[firstName] $row[lastName]</td>";
+                                        }
+                                        echo "<td>$row[paymentAmount]</td>
+                                        <td>";echo date ('F d, Y', strtotime($row['paymentDate'])); echo"</td>
+                                    </tr>";
+                                  }
+                                } else {
+                                  echo "<tr><td colspan='4'>No payments at this time</td></tr>";
+                                }
+                                if ($resultCheck >= 5) {
+                                  echo "<tr><td align='right' colspan='4'><a href='index.php?action=payments'>View All Payments</a></td></tr>";
+                                }
+                                ?>
+                                  </table>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12 gutter">

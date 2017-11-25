@@ -1,7 +1,8 @@
-<?php include 'views/header.php'; ?>
+<?php include 'views/header.php';?>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <link rel="stylesheet" href="css/dashboard.css">
+<link rel="javascript" href="js/creditcardform.js">
 
 <body class="home">
     <div class="container-fluid display-table">
@@ -40,7 +41,7 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project"><i class="fa fa-plus" aria-hidden="true"></i>Add Project</a></li>
+                                    <!-- <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#pay_now"><i class="fa fa-plus" aria-hidden="true"></i>Add Project</a></li> -->
                                     <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                                     <li>
                                         <a href="#" class="icon-info">
@@ -54,7 +55,7 @@
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <div class="navbar-content">
-                                                    <span>Brandon DeJonge</span>
+                                                    <span><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></span>
                                                     <p class="text-muted small">
                                                         Admin
                                                     </p>
@@ -65,18 +66,19 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li><form action="includes/logout.php" method="post"><button type="submit" name="logout-submit" class="link-button"><i class="fa fa-sign-out" aria-hidden="true"></i></button></form></li>
                                 </ul>
                             </div>
                         </div>
                     </header>
                 </div>
                 <div class="user-dashboard">
-                    <h1>Hello, User</h1>
+                    <h1>Hello, <?php echo $_SESSION['firstName'] ?></h1>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 gutter">
 
                             <div class="sales">
-                                <h2>Your Payments</h2>
+                                <h2>Payments</h2>
 
                                 <div class="btn-group">
                                     <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,6 +91,68 @@
                                         <a href="#">2016</a>
                                     </div>
                                 </div>
+                                <div class='payment_container'>
+                                  <div class='row col-md-12 custyle'>
+
+                                  <table class='table table-striped custab'>
+                                  <thead>
+                                      <tr>
+                                          <th>ID</th>
+                                          <th>Name</th>
+                                          <th>Ammount</th>
+                                          <th>Due Date</th>
+                                          <?php if ($_SESSION['renterID'] == 0) {
+                                            echo "<th class='text-center'>Paid?</th>";
+                                          } else {
+                                            echo "<th class='text-center'>Action</th>";
+                                          }
+                                          ?>
+                                      </tr>
+                                  </thead>
+                                <?php
+                                include_once 'includes/database.php';
+                                if ($_SESSION['renterID'] == 0){
+                                  $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID ORDER BY paymentDate ASC";
+
+                                } else {
+                                  $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID AND $_SESSION[renterID] = renter.renterID";
+                                }
+                                $result = mysqli_query($conn, $sql);
+                                $resultCheck = mysqli_num_rows($result);
+
+                                if ($resultCheck > 0) {
+                                  while($row = $result->fetch_assoc()) {
+                                    echo
+                                    "<tr>
+                                        <td>$row[paymentID]</td>
+                                        <td>$row[firstName] $row[lastName]</td>
+                                        <td>$row[paymentAmount]</td>
+                                        <td>";echo date ('F d, Y', strtotime($row['paymentDate'])); echo "</td>";
+                                        if ($_SESSION['renterID'] == 0) {
+                                          if ($row['paymentPaid'] == '0') {
+                                            echo "<td class='text-center'><a class='btn btn-danger btn-sm'><i class='fa fa-times' aria-hidden='true'>Paid</i></a></td>";
+                                          } else {
+                                            echo "<td class='text-center'><a class='btn btn-success btn-sm'><i class='fa fa-check' aria-hidden='true'>Paid</i></a></td>";
+                                          }
+                                        } else {
+                                        if ($row['paymentPaid'] == '0'){
+                                          echo "
+
+                                              <td class='text-center'><button href='#' class='btn btn-success btn-sm payNowButton' value='$row[paymentAmount]'><i class='fa fa-usd' aria-hidden='true'>Pay Now</i></button></td>
+                                          ";
+                                        } else {
+                                          echo "<td class='text-center'><a class='btn btn-sm'><i class='fa fa-check' aria-hidden='true'>Paid</i></a></td>";
+                                        }
+                                      }
+                                    echo "</tr>";
+                                  }
+                                } else {
+                                  echo "<tr><td colspan='5'>No payments at this time</td></tr>";
+                                }
+                                ?>
+                                  </table>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -99,30 +163,124 @@
     </div>
 
 
+    <script>
+    $(document).ready(function() {
+      $('.payNowButton').click(function() {
+        var totalAmount = $(this).val();
+        $('#pay_now').modal('show');
+        document.getElementById('payNow').innerHTML = 'Pay ' + totalAmount;
+      });
+    });
+    </script>
 
     <!-- Modal -->
-    <div id="add_project" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div id="pay_now" class="modal fade" role="dialog">
+      <div class="container">
+  <div class="row">
+      <!-- You can make it whatever width you want. I'm making it full width
+           on <= small devices and 4/12 page width on >= medium devices -->
+      <div class="col-xs-12 col-md-4">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header login-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title">Add Project</h4>
-                </div>
-                <div class="modal-body">
-                            <input type="text" placeholder="Project Title" name="name">
-                            <input type="text" placeholder="Post of Post" name="mail">
-                            <input type="text" placeholder="Author" name="passsword">
-                            <textarea placeholder="Desicrption"></textarea>
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
-                    <button type="button" class="add-project" data-dismiss="modal">Save</button>
-                </div>
-            </div>
 
-        </div>
+          <!-- CREDIT CARD FORM STARTS HERE -->
+          <div class="panel panel-default credit-card-box">
+              <div class="panel-heading display-table" >
+                  <div class="row display-tr" >
+                      <h3 class="panel-title display-td" >Payment Details</h3>
+                      <div class="display-td" >
+                          <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                      </div>
+                  </div>
+              </div>
+              <div class="panel-body">
+                  <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                                  <label for="cardNumber">CARD NUMBER</label>
+                                  <div class="input-group">
+                                      <input
+                                          type="tel"
+                                          class="form-control"
+                                          name="cardNumber"
+                                          placeholder="Valid Card Number"
+                                          autocomplete="cc-number"
+                                          maxlength="16"
+                                          required autofocus
+                                      />
+                                      <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-7 col-md-7">
+                              <div class="form-group">
+                                  <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                                  <input
+                                      type="tel"
+                                      class="form-control exp-input"
+                                      name="cardExpiry"
+                                      placeholder="MM"
+                                      autocomplete="cc-exp"
+                                      maxlength="2"
+                                      length="2"
+                                      required
+                                  />
+                                  <input
+                                      type="tel"
+                                      class="form-control exp-input"
+                                      name="cardExpiry"
+                                      placeholder="YY"
+                                      autocomplete="cc-exp"
+                                      maxlength="2"
+                                      required
+                                  />
+                              </div>
+                          </div>
+                          <div class="col-xs-5 col-md-5 pull-right">
+                              <div class="form-group">
+                                  <label for="cardCVC">CV CODE</label>
+                                  <input
+                                      type="tel"
+                                      class="form-control"
+                                      name="cardCVC"
+                                      placeholder="CVC"
+                                      autocomplete="cc-csc"
+                                      maxlength="3"
+                                      required
+                                  />
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                                  <label for="couponCode">NAME ON CARD</label>
+                                  <input type="text" class="form-control" name="name" />
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-4">
+                              <button class="btn btn-danger btn-lg btn-block" type="button" data-dismiss="modal">Cancel</button>
+                          </div>
+                          <div class="col-xs-8">
+                              <button class="subscribe btn btn-success btn-lg btn-block" type="button" id="payNow"></button>
+                          </div>
+                      </div>
+                      <div class="row" style="display:none;">
+                          <div class="col-xs-12">
+                              <p class="payment-errors"></p>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <!-- CREDIT CARD FORM ENDS HERE -->
+
+
+      </div>
     </div>
 
 </body>

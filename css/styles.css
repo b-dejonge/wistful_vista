@@ -25,7 +25,7 @@ html, body{
 
 .header h1{
 	background-color: rgba(0,0,0,0.5);
-    max-width: 50%;
+    max-width: 40%;
     padding: 30px 0px;
     margin: 0 auto;
 }
@@ -88,11 +88,11 @@ html, body{
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #fff;
-}
-
-.navbar-default .navbar-nav > li > a {
     color: #000;
+		font-family: 'Oswald', sans-serif;
+		font-weight: 600;
+		font-size: 18px;
+		text-shadow: 0.5px 0.5px #a5a5a5;
 }
 
 .navbar-default .navbar-nav > .active > a,

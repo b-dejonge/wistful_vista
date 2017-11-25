@@ -14,9 +14,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse right">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
+                <li class="<!--active-->"><a href="index.php">Home</a></li>
                 <li><a href="index.php?action=apartments">Apartments</a></li>
                 <li><a href="index.php?action=contact">Contact</a></li>
+                <?php if(isset($_SESSION['renterID'])){echo '<li><a href="index.php?action=dashboard">Dashboard</a></li>';}?>
                 <li><?php if(isset($_SESSION['renterID'])){echo '<form action="includes/logout.php" method="post"><button type="submit" class="nav-logout-button" name="logout-submit">Logout</button></form>';} else { echo '<a href="index.php?action=login">Login</a>';}?></li>
             </ul>
         </div><!-- /.nav-collapse -->

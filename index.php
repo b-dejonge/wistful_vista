@@ -20,10 +20,10 @@ if (isset($_GET['action']))
   }
 
   else if($action == 'dashboard'){
-    if (isset($_SESSION['renterID'])) {
+    if (isset($_SESSION['firstName'])) {
       include ('views/dashboard.php');
     } else {
-      header("Location: index.php?action=login");
+      include ('views/signin.php');
     }
   }
 

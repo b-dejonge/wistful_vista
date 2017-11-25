@@ -84,8 +84,7 @@
 <footer>
     <div class="container">
         <div class="col-md-10 col-md-offset-1 text-center">
-            <a href="index.php?action=homepage" style="text-decoration:none;color:#fff;">< Go Back</a><br />
-            <a href="index.php?action=dashboard" style="text-decoration:none;color:#fff;">Dashboard</a>
+            <a href="index.php?action=homepage" style="text-decoration:none;color:#fff;"><- Go Back</a><br />
         </div>
     </div>
 </footer>

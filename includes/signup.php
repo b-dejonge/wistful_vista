@@ -37,11 +37,27 @@ if (isset($_POST['register-submit'])){
           $sql = "INSERT INTO renter (firstName, lastName, address, city, state, zip, username, password)
                   VALUES ('$firstName','$lastName','$address','$city','$state','$zip','$username','$hashedPassword');";
           mysqli_query($conn, $sql);
-          header("Location: ../index.php?action=dashboard");
-          exit();
+          $sql = "SELECT * FROM renter WHERE username='$username'";
+      		$result = mysqli_query($conn, $sql);
+      		$resultCheck = mysqli_num_rows($result);
+      		if ($resultCheck < 1) {
+      			header("Location: ../index.php?login=error1");
+      			exit();
+      		} else {
+      			if ($row = mysqli_fetch_assoc($result)) {
+      					//Log in the user here
+                session_start();
+      					$_SESSION['renterID'] = $row['renterID'];
+      					$_SESSION['firstName'] = $row['firstName'];
+      					$_SESSION['lastName'] = $row['lastName'];
+      					$_SESSION['username'] = $row['username'];
+      					header("Location: ../index.php?action=dashboard");
+      					exit();
+      				}
+      			}
+          }
         }
       }
-    }
 } else {
   header("Location: ../index.php?action=login");
   exit();
