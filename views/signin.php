@@ -32,28 +32,19 @@
               <form id="register-form" action="includes/signup.php" method="post" role="form" style="display: none;">
                 <h2>REGISTER</h2>
                   <div class="form-group">
-                    <input type="text" name="firstName" id="firstName" tabindex="1" class="form-control" placeholder="First Name*" value="">
+                    <input type="text" name="firstName" id="firstName" tabindex="1" class="form-control" placeholder="First Name" value="">
                   </div>
                   <div class="form-group">
-                    <input type="text" name="lastName" id="lastName" tabindex="1" class="form-control" placeholder="Last Name*" value="">
+                    <input type="text" name="lastName" id="lastName" tabindex="1" class="form-control" placeholder="Last Name" value="">
                   </div>
                   <div class="form-group">
-                    <input type="text" name="address" id="address" tabindex="1" class="form-control" placeholder="Address*" value="">
+                    <input type="text" name="address" id="apt" tabindex="1" class="form-control" placeholder="Apt #" value="">
                   </div>
                   <div class="form-group">
-                    <input type="text" name="city" id="city" tabindex="1" class="form-control" placeholder="City*" value="">
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
                   <div class="form-group">
-                    <input type="text" name="state" id="state" tabindex="1" class="form-control" placeholder="State*" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="zip" id="zip" tabindex="1" class="form-control" placeholder="Zip*" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username*" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password*">
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                   </div>
                   <div class="form-group">
                     <div class="row">

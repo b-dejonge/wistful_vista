@@ -21,6 +21,7 @@ var myNavBar = {
             for(var i=0; i < this.elements.length; i++) {
                 document.getElementById(this.elements[i]).className += " fixed-theme";
             }
+            document.getElementById('hero').className += "fixed-theme";
             this.flagAdd = false;
         }
     },
@@ -29,6 +30,7 @@ var myNavBar = {
         for(var i=0; i < this.elements.length; i++) {
             document.getElementById(this.elements[i]).className =
                     document.getElementById(this.elements[i]).className.replace( /(?:^|\s)fixed-theme(?!\S)/g , '' );
+            document.getElementById('hero').className = "";
         }
         this.flagAdd = true;
     }

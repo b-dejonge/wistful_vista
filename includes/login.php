@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 if (isset($_POST['login-submit'])) {
 
 	include 'database.php';
@@ -30,9 +28,11 @@ if (isset($_POST['login-submit'])) {
 					exit();
 				} elseif ($hashedPwdCheck == true) {
 					//Log in the user here
+          session_start();
 					$_SESSION['renterID'] = $row['renterID'];
 					$_SESSION['firstName'] = $row['firstName'];
 					$_SESSION['lastName'] = $row['lastName'];
+          $_SESSION['apt'] = $row['apt'];
 					$_SESSION['username'] = $row['username'];
 					header("Location: ../index.php?action=dashboard");
 					exit();

@@ -18,7 +18,7 @@
                 <li><a href="index.php?action=apartments">Apartments</a></li>
                 <li><a href="index.php?action=contact">Contact</a></li>
                 <?php if(isset($_SESSION['renterID'])){echo '<li><a href="index.php?action=dashboard">Dashboard</a></li>';}?>
-                <li><?php if(isset($_SESSION['renterID'])){echo '<form action="includes/logout.php" method="post"><button type="submit" class="nav-logout-button" name="logout-submit">Logout</button></form>';} else { echo '<a href="index.php?action=login">Login</a>';}?></li>
+                <li><?php if(isset($_SESSION['renterID'])){echo '<form action="includes/logout.php" method="post"><button type="submit" class="nav-logout-button" name="logout-submit">Logout</button></form>';} else { echo '<a href="index.php?action=login">Login/Register</a>';}?></li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
@@ -27,10 +27,17 @@
 
 
 <div id="hero">
-	<div class="header">
-  		<h1>Wistful Vista Apartments</h1>
-	</div>
+  <div id="hero-overlay"></div>
+  <div class="header">
+      <h1>Our apartments are </h1>
+      <b><span1>
+      affordable<br />
+      modern<br />
+      close to the beach
+    </span1></b>
+  </div>
 </div>
+
 <div class="main">
 
 </div>
