@@ -136,27 +136,24 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
         <div class="col-md-3 col-xs-6">
-          <i class="fa fa-building-o"></i>
-          <h5 class="entry-title">Affordable</h5>
+          <img src="views/images/building-pin.png" width="90">
+          <h5 class="entry-title">Modern Style</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
         <div class="col-md-3 col-xs-6">
-          <i class="fa fa-tree"></i>
-          <h5 class="entry-title">Affordable</h5>
+          <img src="views/images/beach-pin.png" width="90">
+          <h5 class="entry-title">Close to the Beach</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
         <div class="col-md-3 col-xs-6">
-          <i class="fa fa-car"></i>
-          <h5 class="entry-title">Affordable</h5>
+          <img src="views/images/parking-pin.png" width="90">
+          <h5 class="entry-title">Free Parking</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
 </body>
 
 <?php include 'views/footer.php'; ?>

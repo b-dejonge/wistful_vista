@@ -268,22 +268,22 @@ body{
 	margin: 0 auto;
 }
 
-.main, .why-us{
+.main, .why-us, .site-footer{
 	max-width: 1200px;
 	margin: 0 auto;
 }
 
 .gutter [class*='col-']:not(:first-child):not(:last-child) {
-  padding-right:10px;
-  padding-left:10px;
+  padding-right:15px;
+  padding-left:15px;
 }
 
 .gutter [class*='col-']:first-child {
-  padding-right:10px;
+  padding-right:15px;
 }
 
 .gutter [class*='col-']:last-child {
-  padding-left:10px;
+  padding-left:15px;
 }
 
 .featured {
@@ -426,4 +426,130 @@ body{
 
 .why-us-contents img{
 	margin-bottom: 33px;
+}
+
+#footer{
+	background: #323232;
+	color: #919191;
+}
+
+.site-footer-bg{
+	/*background: url(../views/images/skyline.svg) bottom center no-repeat;*/
+	background: url(https://themesinspire.com/templates/inspire-citynight/assets/images/footer-bg.png) bottom center no-repeat;
+	padding: 80px 0 50px 0;
+	width: 100vw;
+}
+
+.site-footer.col-xs-12{
+	float: none;
+}
+
+.site-footer h4 {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0 0 30px 0;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 400;
+	font-size: 18px;
+}
+
+.footer-img{
+	width: 200px;
+	margin-bottom: 30px;
+	margin-left: -17px;
+}
+
+.about-section p{
+	margin-bottom: 35px;
+	line-height: 26px;
+}
+
+.social-icons {
+  margin: 0 0 0 -11px;
+  padding: 0;
+}
+
+.social-icons li {
+  list-style: none;
+  float: left;
+  margin-left: 11px;
+}
+
+.social-icons .fa {
+  color: #323232;
+  background: #686868;
+  padding: 8px 9px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.news-section ul{
+  margin: 0;
+  padding: 0;
+}
+
+.news-section ul li {
+  list-style: none;
+  clear: both;
+}
+
+.news-section .avatar {
+  width: 50px;
+  float: left;
+  margin-right: 10px;
+}
+
+.exerpt {
+  overflow: hidden;
+	line-height: 26px;
+}
+
+.office-section ul{
+  margin: 0;
+  padding: 0;
+}
+
+.office-section li {
+  list-style: none;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.site-footer-bottom {
+    background: #272727;
+    padding: 30px 0 40px 0;
+}
+
+.footer-container{
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.site-footer-bottom .footer-nav ul {
+    margin: 0 0 0 -25px;
+    padding: 0;
+}
+
+.site-footer-bottom .footer-nav li {
+    list-style: none;
+    float: left;
+    margin-left: 25px;
+    color: inherit;
+}
+
+.footer-nav-logout-button{
+	background: none;
+	border: none;
+	/*padding: 37px 15px 15px 15px;*/
+	color: #5584ff;
+	/*font-family: 'Oswald', sans-serif;
+	font-weight: 600;*/
+	/*font-size: 18px;*/
+}
+
+.site-footer-bottom a{
+	text-decoration: none;
+	color: #5584ff;
 }
