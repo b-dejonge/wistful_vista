@@ -3,11 +3,16 @@ html, body{
 	overflow-x: hidden;
 }
 
+body{
+	font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 #hero{
-  background-image: url(../views/images/hero-img.jpg);
+  background-image: url(../views/images/hero.jpg);
   background-size:cover;
   position:relative;
   height:100vh;
+	background-position: 75%;
 }
 
 #hero-overlay{
@@ -62,7 +67,7 @@ html, body{
 }
 .header span1 {
 	display: inline-block;
-	color: #5584ff;
+	color: #FF9A40;
 	position: relative;
 	white-space: nowrap;
 	top: -5px;
@@ -87,10 +92,6 @@ html, body{
 .col-centered{
     float: none;
     margin: 0 auto;
-}
-
-.main{
-	height: 400px;
 }
 
 .navbar-brand img{
@@ -228,4 +229,201 @@ html, body{
 
 .right{
 	float: right;
+}
+
+.heading h2{
+	margin: 80px 0 25px;
+	font-size: 35px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	line-height: 1.1;
+	color: #333;
+	text-transform: uppercase;
+}
+
+.heading h2::before, .heading h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 1px;
+    border: 1px solid #222;
+	}
+
+.heading h2::before {
+    bottom: 23px;
+    width: 60px;
+}
+
+.heading h2::after {
+    bottom: 19px;
+    width: 35px;
+}
+
+.subheading{
+	max-width: 60%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.main, .why-us{
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.gutter [class*='col-']:not(:first-child):not(:last-child) {
+  padding-right:10px;
+  padding-left:10px;
+}
+
+.gutter [class*='col-']:first-child {
+  padding-right:10px;
+}
+
+.gutter [class*='col-']:last-child {
+  padding-left:10px;
+}
+
+.featured {
+	margin: 40px auto 60px auto;
+}
+
+.featuredApt{
+	background: #f5f5f5;
+	padding: 10px;
+  margin-bottom: 30px;
+}
+
+.featuredApt img{
+	width: 100%;
+	margin-bottom: 24px;
+}
+
+.featuredApt .featuredApt-contents{
+	margin: 0 10px;
+}
+
+.featuredApt .featuredApt-header{
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 14px;
+	margin-bottom: 15px;
+}
+
+.entry-title{
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	margin: 0 0 8px 0;
+}
+
+.featuredApt .view-floor-plan{
+	font-size: 12px;
+  color: #999;
+  display: block;
+}
+
+.featuredApt .featuredApt-meta{
+	color: #707070;
+	font-size: 13px;
+	margin-left: -19px;
+}
+
+.featuredApt .featuredApt-meta span {
+    color: inherit;
+    float: left;
+    margin-left: 19px;
+    margin-bottom: 2px;
+}
+
+.announcement{
+	background: url(../views/images/city.jpg) 80% no-repeat;
+	/*width: 100vw;*/
+	padding: 70px 0;
+	position: relative;
+}
+
+.announcement .col-xs-12{
+	float: none;
+}
+
+.announcement h2{
+	font-size: 45px;
+	color: #fff;
+	text-transform: capitalize;
+	margin: 0 0 20px 0;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	line-height: 1.1;
+}
+
+.announcement p{
+	color: #fff;
+	margin-bottom: 40px;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.announcement:after{
+	content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: inline-block;
+  background: rgba(255,	154, 64, 0.7);
+}
+
+.announcement .announcement-main{
+	z-index: 1;
+	position: relative;
+}
+
+.announcement .buttons{
+	margin-top: 30px;
+}
+
+.announcement a{
+	padding: 0 10px;
+}
+
+.announcement .btn {
+	background-color: #333;
+	border: 1px solid #222;
+	color: #fff;
+	padding: 10px 20px;
+	transition: 0.8s;
+	-webkit-transition:  0.8s;
+}
+
+.announcement .btn:hover {
+	background-color: #5584ff;
+	border: 1px solid #5584ff;
+	transition: 0.8s;
+	-webkit-transition:  0.8s;
+}
+
+.why-us-bg{
+	background: url(../views/images/apartment-looking-up.png) left bottom no-repeat;
+	background-size: contain;
+	max-width: none;
+	min-height: 700px;
+}
+
+.why-us .subheading{
+	margin-bottom: 40px;
+}
+
+.why-us-contents i{
+	background-color: #5584ff;
+	padding: 20px 29px;
+	border-radius: 100%;
+	margin-bottom: 33px;
+	font-size: 40px;
+}
+
+.why-us-contents img{
+	margin-bottom: 33px;
 }
