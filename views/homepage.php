@@ -1,6 +1,6 @@
 <?php include 'views/header.php'; ?>
 <script src="js/nav.js"></script>
-<body>
+<body class="homepage">
 <nav id="header" class="navbar navbar-default navbar-fixed-top">
     <div id="header-container" class="container navbar-container">
         <div class="navbar-header">

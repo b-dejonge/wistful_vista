@@ -1,4 +1,4 @@
-<?php include 'views/header.php'; ?>
+<?php include 'views/header.php';?>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <link rel="stylesheet" href="css/dashboard.css">
@@ -40,7 +40,7 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project"><i class="fa fa-plus" aria-hidden="true"></i>Add Project</a></li>
+                                    <!-- <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#pay_now"><i class="fa fa-plus" aria-hidden="true"></i>Add Project</a></li> -->
                                     <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                                     <li>
                                         <a href="#" class="icon-info">
@@ -65,7 +65,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><form action="includes/logout.php" method="post"><button type="submit" name="logout-submit" class="link-button"><i class="fa fa-sign-out" aria-hidden="true"></i></button></li>
+                                    <li><form action="includes/logout.php" method="post"><button type="submit" name="logout-submit" class="link-button"><i class="fa fa-sign-out" aria-hidden="true"></i></button></form></li>
                                 </ul>
                             </div>
                         </div>
@@ -76,19 +76,77 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 gutter">
 
-                            <div class="sales report">
+                            <div class="sales">
                                 <h2>Maintenance</h2>
+
                                 <div class="btn-group">
-                                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>Period:</span> Last Year
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="#">2012</a>
-                                        <a href="#">2014</a>
-                                        <a href="#">2015</a>
-                                        <a href="#">2016</a>
-                                    </div>
+                                    <button class="btn btn-secondary btn-lg add-request" data-toggle="modal" data-target="#add-request">Add Request</button>
                                 </div>
+                                <div class='payment_container'>
+                                  <div class='row col-md-12 custyle'>
+
+                                  <table class='table table-striped custab'>
+                                  <thead>
+                                      <tr>
+                                          <th>ID</th>
+                                          <?php if ($_SESSION['renterID'] == 0) {
+                                            echo "<th>Name</th>";
+                                          }?>
+                                          <th>Urgency</th>
+                                          <th>Description</th>
+                                          <th>Date</th>
+                                          <th>Status</th>
+                                          <?php if ($_SESSION['renterID'] == 0) {
+                                            echo "<th class='text-center'>Action</th>";
+                                          }?>
+                                      </tr>
+                                  </thead>
+                                <?php
+                                include_once 'includes/database.php';
+                                if ($_SESSION['renterID'] == 0){
+                                  $sql = "SELECT firstName, lastName, maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID ORDER BY urgency ASC";
+
+                                } else {
+                                  $sql = "SELECT maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID AND $_SESSION[renterID] = renter.renterID";
+                                }
+                                $result = mysqli_query($conn, $sql);
+                                $resultCheck = mysqli_num_rows($result);
+
+                                if ($resultCheck > 0) {
+                                  while($row = $result->fetch_assoc()) {
+                                    echo
+                                    "<tr>
+                                        <td>$row[maintenanceID]</td>";
+                                        if ($_SESSION['renterID'] == 0) {
+                                          echo "<td>$row[firstName] $row[lastName]</td>";
+                                        }
+                                  echo "<td>$row[urgency]</td>
+                                        <td class='description'>$row[description]</td>
+                                        <td>";echo date ('F d, Y', strtotime($row['date'])); echo "</td>";
+                                        if ($_SESSION['renterID'] == 0) {
+                                          if ($row['status'] == '0') {
+                                            echo "<td class='text-center'><a class='btn btn-danger btn-sm'><i class='fa fa-times' aria-hidden='true'>Paid</i></a></td>";
+                                          } else {
+                                            echo "<td class='text-center'><a class='btn btn-success btn-sm'><i class='fa fa-check' aria-hidden='true'>Paid</i></a></td>";
+                                          }
+                                        } else {
+                                        if ($row['status'] == '0'){
+                                          echo "
+                                              <td>Open</td>
+                                          ";
+                                        } else {
+                                          echo "<td>Closed</td>";
+                                        }
+                                      }
+                                    echo "</tr>";
+                                  }
+                                } else {
+                                  echo "<tr><td colspan='5'>No maintenance requests at this time</td></tr>";
+                                }
+                                ?>
+                                  </table>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -99,32 +157,53 @@
     </div>
 
 
+    <!-- <script>
+    $(document).ready(function() {
+      $('.payNowButton').click(function() {
+        var totalAmount = $(this).val();
+        $('#pay_now').modal('show');
+        document.getElementById('payNow').innerHTML = 'Pay $' + totalAmount;
+        document.getElementById('payNow').value = totalAmount;
+      });
+    });
+    </script> -->
 
     <!-- Modal -->
-    <div id="add_project" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header login-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title">Add Project</h4>
+    <div id="add-request" class="modal fade" role="dialog">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default credit-card-box">
+              <div class="panel-heading display-table" >
+                <div class="row display-tr" >
+                  <h3 class="panel-title display-td">Add maintenance request</h3>
                 </div>
-                <div class="modal-body">
-                            <input type="text" placeholder="Project Title" name="name">
-                            <input type="text" placeholder="Post of Post" name="mail">
-                            <input type="text" placeholder="Author" name="passsword">
-                            <textarea placeholder="Desicrption"></textarea>
+              </div>
+              <div class="panel-body">
+                <form role="form" id="addrequest-form" method="POST" action="includes/addrequest.php">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label for="urgency">Urgency</label/>
+                          <select class="urgency-select" name="urgency">
+                            <option value="Standard">Standard</option>
+                            <option value="Soon">Soon</option>
+                            <option value="Immediate">Immediate</option>
+                          </select>
+                        <label for="description">Description</label>
+                        <textarea class="" name="description" required /></textarea>
+                        <button class="btn btn-danger btn-lg addrequest-cancel pull-left" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-lg addrequest-submit pull-right" name="addrequest-submit" type="submit">Submit</button>
+                      </div>
                     </div>
-                <div class="modal-footer">
-                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
-                    <button type="button" class="add-project" data-dismiss="modal">Save</button>
-                </div>
+                  </div>
+                </form>
+              </div>
             </div>
-
+          </div>
         </div>
+      </div>
     </div>
 
 </body>
-
-<?php include 'views/footer.php'; ?>
+<?php include 'views/dashboard-footer.php'; ?>

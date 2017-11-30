@@ -136,7 +136,6 @@
                                         } else {
                                         if ($row['paymentPaid'] == '0'){
                                           echo "
-
                                               <td class='text-center'><button href='#' class='btn btn-success btn-sm payNowButton' value='$row[paymentAmount]'><i class='fa fa-usd' aria-hidden='true'>Pay Now</i></button></td>
                                           ";
                                         } else {
@@ -280,4 +279,4 @@
     </div>
 </body>
 <script src="js/creditCardValidator.js"></script>
-<?php include 'views/footer.php'; ?>
+<?php include 'views/dashboard-footer.php'; ?>

@@ -1,5 +1,51 @@
 /*Main CSS*/
 
+td.description {
+    max-width: 250px;
+}
+.modal{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -200px;
+  padding: 20px;
+}
+
+#add-request.modal{
+  margin-top: 0px;
+}
+
+#add-request .credit-card-box .display-td{
+  width: 100%;
+}
+
+#add-request .panel-heading{
+  padding: 10px 81px;
+}
+
+#add-request textarea {
+    width: 98%;
+    height: 200px;
+    max-height: 500px;
+    max-width: 98%;
+    min-width: 98%;
+    margin-bottom: 20px;
+}
+
+#add-request .urgency-select{
+  margin-bottom: 10px;
+}
+
+#add-request .addrequest-submit{
+  border-radius: 25px;
+  background: #5584ff;
+  color: white;
+}
+
+#add-request .addrequest-cancel{
+  border-radius: 25px;
+}
 
 /*Login Signup Page*/
 a:focus,a:hover,a{
@@ -439,22 +485,22 @@ header {
     width: 100%;
 }
 .sales .btn-group button {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border: 1px solid #dadee7;
+    background: #5584ff none repeat scroll 0 0;
+    /*border: 1px solid #dadee7;*/
     border-radius: 100px;
     font-size: 15px;
     letter-spacing: 0.5px;
-    padding-right: 32px;
-    color: #0e1a35;
+    /*padding-right: 32px;*/
+    color: #fff;
 }
 
-.sales button::before {
+/*.sales button::before {
     content: "";
     font-family: FontAwesome;
     position: absolute;
     right: 12px;
     top: 11px;
-}
+}*/
 .sales  .btn-group {
     float: right;
 }

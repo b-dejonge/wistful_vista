@@ -41,7 +41,7 @@
   </div>
 <div class="site-footer-bottom">
   <div class="footer-container">
-    <p class="copyright pull-left">&copy; 2017 Designed by <a href="brandondejonge.com">Brandon DeJonge</a>. All rights reserved.</p>
+    <p class="copyright pull-left">&copy; 2017 Designed by <a href="https://www.brandondejonge.com">Brandon DeJonge</a>. All rights reserved.</p>
     <nav class="footer-nav pull-right">
       <ul>
         <li class="<!--active-->"><a href="index.php">Home</a></li>

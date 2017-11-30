@@ -80,4 +80,4 @@
     </div>
 </footer>
 
-<?php include 'views/footer.php'; ?>
+<?php include 'views/dashboard-footer.php'; ?>

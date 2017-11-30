@@ -3,8 +3,12 @@ html, body{
 	overflow-x: hidden;
 }
 
-body{
+.homepage{
 	font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.home{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #hero{
