@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 27, 2017 at 04:54 PM
+-- Generation Time: Nov 30, 2017 at 07:42 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `Wistful_Vista`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `maintenance`
+--
+
+CREATE TABLE `maintenance` (
+  `maintenanceID` int(11) NOT NULL,
+  `renterID` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `urgency` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `maintenance`
+--
+
+INSERT INTO `maintenance` (`maintenanceID`, `renterID`, `date`, `urgency`, `description`, `status`) VALUES
+(1, 4, '2017-11-29 14:29:05', 'Immediate', 'House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire House on fire ', 0);
 
 -- --------------------------------------------------------
 
@@ -86,6 +108,12 @@ INSERT INTO `renter` (`renterID`, `firstName`, `lastName`, `apt`, `username`, `p
 --
 
 --
+-- Indexes for table `maintenance`
+--
+ALTER TABLE `maintenance`
+  ADD PRIMARY KEY (`maintenanceID`);
+
+--
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
@@ -102,6 +130,11 @@ ALTER TABLE `renter`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `maintenance`
+--
+ALTER TABLE `maintenance`
+  MODIFY `maintenanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `payment`
 --
