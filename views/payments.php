@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-md-10 col-sm-11 display-table-cell v-align">
-                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                <!-- <button type="button" class="slide-toggle">Slide Toggle</button> -->
                 <div class="row">
                     <header>
                         <div class="col-md-7">
@@ -56,7 +56,11 @@
                                                 <div class="navbar-content">
                                                     <span><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></span>
                                                     <p class="text-muted small">
-                                                        Admin
+                                                      <?php if ($_SESSION['renterID'] == 0) {
+                                                        echo "Admin";
+                                                      } else {
+                                                        echo "Apt #$_SESSION[apt]";
+                                                      } ?>
                                                     </p>
                                                     <div class="divider">
                                                     </div>
@@ -78,18 +82,6 @@
 
                             <div class="sales">
                                 <h2>Payments</h2>
-
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>Period:</span> Last Year
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="#">2012</a>
-                                        <a href="#">2014</a>
-                                        <a href="#">2015</a>
-                                        <a href="#">2016</a>
-                                    </div>
-                                </div>
                                 <div class='payment_container'>
                                   <div class='row col-md-12 custyle'>
 
@@ -111,10 +103,10 @@
                                 <?php
                                 include_once 'includes/database.php';
                                 if ($_SESSION['renterID'] == 0){
-                                  $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID ORDER BY paymentDate ASC";
+                                  $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID ORDER BY paymentPaid ASC, paymentDate ASC";
 
                                 } else {
-                                  $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID AND $_SESSION[renterID] = renter.renterID";
+                                  $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID AND $_SESSION[renterID] = renter.renterID ORDER BY paymentPaid ASC, paymentDate ASC";
                                 }
                                 $result = mysqli_query($conn, $sql);
                                 $resultCheck = mysqli_num_rows($result);
@@ -179,8 +171,6 @@
             <!-- You can make it whatever width you want. I'm making it full width
                  on <= small devices and 4/12 page width on >= medium devices -->
             <div class="col-xs-12 col-md-4">
-
-
                 <!-- CREDIT CARD FORM STARTS HERE -->
                 <div class="panel panel-default credit-card-box">
                     <div class="panel-heading display-table" >
@@ -279,4 +269,11 @@
     </div>
 </body>
 <script src="js/creditCardValidator.js"></script>
+<script>
+$(document).ready(function(){
+   $('[data-toggle="offcanvas"]').click(function(){
+       $("#navigation").toggleClass("hidden-xs");
+   });
+});
+</script>
 <?php include 'views/dashboard-footer.php'; ?>

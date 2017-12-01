@@ -56,7 +56,11 @@
                                                 <div class="navbar-content">
                                                     <span><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></span>
                                                     <p class="text-muted small">
-                                                        Admin
+                                                      <?php if ($_SESSION['renterID'] == 0) {
+                                                        echo "Admin";
+                                                      } else {
+                                                        echo "Apt #$_SESSION[apt]";
+                                                      } ?>
                                                     </p>
                                                     <div class="divider">
                                                     </div>
@@ -78,7 +82,6 @@
 
                             <div class="sales">
                                 <h2>Maintenance</h2>
-
                                 <div class="btn-group">
                                     <button class="btn btn-secondary btn-lg add-request" data-toggle="modal" data-target="#add-request">Add Request</button>
                                 </div>
@@ -104,10 +107,10 @@
                                 <?php
                                 include_once 'includes/database.php';
                                 if ($_SESSION['renterID'] == 0){
-                                  $sql = "SELECT firstName, lastName, maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID ORDER BY urgency ASC";
+                                  $sql = "SELECT firstName, lastName, maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID ORDER BY status ASC, urgency ASC";
 
                                 } else {
-                                  $sql = "SELECT maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID AND $_SESSION[renterID] = renter.renterID";
+                                  $sql = "SELECT maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID AND $_SESSION[renterID] = renter.renterID ORDER BY status ASC, urgency ASC";
                                 }
                                 $result = mysqli_query($conn, $sql);
                                 $resultCheck = mysqli_num_rows($result);
@@ -125,9 +128,11 @@
                                         <td>";echo date ('F d, Y', strtotime($row['date'])); echo "</td>";
                                         if ($_SESSION['renterID'] == 0) {
                                           if ($row['status'] == '0') {
-                                            echo "<td class='text-center'><a class='btn btn-danger btn-sm'><i class='fa fa-times' aria-hidden='true'>Paid</i></a></td>";
+                                            echo "<td>Open</td>
+                                            <td class='text-center'><form action='includes/closeRequest.php' method='POST' style='margin-bottom:0;'><button class='btn btn-danger btn-sm' type='submit' name='closeRequest-submit' value='$row[maintenanceID]'><i class='fa fa-times' aria-hidden='true'> Close</i></button></form></td>";
                                           } else {
-                                            echo "<td class='text-center'><a class='btn btn-success btn-sm'><i class='fa fa-check' aria-hidden='true'>Paid</i></a></td>";
+                                            echo "<td>Closed</td>
+                                            <td class='text-center'></td>";
                                           }
                                         } else {
                                         if ($row['status'] == '0'){
@@ -204,6 +209,12 @@
         </div>
       </div>
     </div>
-
 </body>
+<script>
+$(document).ready(function(){
+   $('[data-toggle="offcanvas"]').click(function(){
+       $("#navigation").toggleClass("hidden-xs");
+   });
+});
+</script>
 <?php include 'views/dashboard-footer.php'; ?>
