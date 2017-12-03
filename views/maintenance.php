@@ -13,6 +13,7 @@
                 <div class="navi">
                     <ul>
                         <li><a href="index.php?action=dashboard"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Dashboard</span></a></li>
+                        <li><a href="index.php?action=messages"><i class="fa fa-envelope" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Messages</span></a></li>
                         <li><a href="index.php?action=payments"><i class="fa fa-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Payments</span></a></li>
                         <li class="active"><a href="index.php?action=maintenance"><i class="fa fa-support" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Maintenance</span></a></li>
                     </ul>
@@ -41,7 +42,7 @@
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
                                     <!-- <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#pay_now"><i class="fa fa-plus" aria-hidden="true"></i>Add Project</a></li> -->
-                                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                    <li><a href="index.php?action=messages"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                                     <li>
                                         <a href="#" class="icon-info">
                                             <i class="fa fa-bell" aria-hidden="true"></i>

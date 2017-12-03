@@ -27,6 +27,14 @@ if (isset($_GET['action']))
     }
   }
 
+  else if($action == 'messages'){
+    include ('views/messages.php');
+  }
+
+  else if ($action == 'create') {
+    include ('views/create.php');
+  }
+
   else if($action == 'payments'){
     include ('views/payments.php');
   }
