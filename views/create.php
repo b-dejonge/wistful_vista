@@ -20,109 +20,69 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-10 col-sm-11 display-table-cell v-align">
-                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                <div class="row">
-                    <header>
-                        <div class="col-md-7">
-                            <nav class="navbar-default pull-left">
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                </div>
-                            </nav>
-                            <div class="search hidden-xs hidden-sm">
-                                <input type="text" placeholder="Search" id="search">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="header-rightside">
-                                <ul class="list-inline header-top pull-right">
-                                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle icon-info" data-toggle="dropdown">
-                                            <i class="fa fa-bell" aria-hidden="true"></i>
-                                            <span class="label label-primary">
-                                              <?php
-                                                include_once 'includes/database.php';
-                                                $sql = "SELECT paymentPaid FROM payment WHERE paymentPaid = '0' AND renterID = $_SESSION[renterID]";
-                                                $result1 = mysqli_query($conn, $sql);
-                                                $openPayments = mysqli_num_rows($result1);
-                                                $sql = "SELECT status FROM maintenance WHERE status = '0' AND renterID = $_SESSION[renterID]";
-                                                $result2 = mysqli_query($conn, $sql);
-                                                $openMaintenance = mysqli_num_rows($result2);
-                                                $notifications = $openPayments + $openMaintenance;
-                                                // echo $openPayments;
-                                                // echo $openMaintenance;
-                                                echo $notifications;
-                                              ?>
-                                            </span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                          <li><?php echo "$openPayments payment(s) due"; ?></li>
-                                          <li><?php echo "$openMaintenance request(s) open"; ?></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i>
-                                            <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="navbar-content">
-                                                    <span><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></span>
-                                                    <p class="text-muted small">
-                                                        <?php if ($_SESSION['renterID'] == 0) {
-                                                          echo "Admin";
-                                                        } else {
-                                                          echo "Apt #$_SESSION[apt]";
-                                                        } ?>
-                                                    </p>
-                                                    <div class="divider">
-                                                    </div>
-                                                    <a href="#" class="view btn-sm active">View Profile</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><form action="includes/logout.php" method="post"><button type="submit" name="logout-submit" class="link-button"><i class="fa fa-sign-out" aria-hidden="true"></i></button></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </header>
-                </div>
+            <?php include 'views/dashboard-header.php'; ?>
                 <div class="user-dashboard">
                     <h1>Hello, <?php echo $_SESSION['firstName'] ?></h1>
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12 gutter">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 gutter">
 
                             <div class="sales">
-                                <h2>Create</h2>
-                                <div class="row col-xs-12">
-                                  <div class="col-sm-6 col-xs-12">
-                                    <div class="create-well">
-                                      <a href="index.php?action=newPayment">
-                                        <div class="create-well">
-                                          <i class="fa fa-plus"></i>
-                                          <h1>Payment</h1>
-                                        </div>
-                                      </a>
-                                    </div>
+                                <h2>New Payment</h2>
+                                <div class='newPayment_container'>
+                                  <div class='row col-md-12'>
+                                    <br />
+                                    <form action="model/createNew.php" method="POST">
+                                      <label for="renterSelect" class="text-muted small">Apt # - Name</label><br />
+                                      <select name="renterSelect" style="width:255px">
+                                      <?php
+                                      $sql = "SELECT firstName, lastName, apt FROM renter ORDER BY apt ASC";
+                                      $result = mysqli_query($conn, $sql);
+                                      $resultCheck = mysqli_num_rows($result);
+                                      if ($resultCheck > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                          if ($row['apt'] == 0){
+                                            //do nothing
+                                          }
+                                          else{
+                                          echo"<option value='$row[apt]'>$row[apt] - $row[firstName] $row[lastName]</option>";
+                                          }
+                                        }
+                                      }
+                                      ?>
+                                      </select>
+                                      <br /><br />
+                                      <label for="amount">Amount:</label>
+                                      <input type="tel" name="amount" placeholder="$000.00" style="width:195px">
+                                      <br /><br />
+                                      <label for="paymentDate">Payment Date:</label>
+                                      <input type="date" name="paymentDate">
+                                      <br /><br />
+                                      <button type="submit" name="newPayment-submit">Submit</button>
+                                    </form>
                                   </div>
-                                  <div class="col-sm-6 col-xs-12">
-                                    <div class="create-well">
-                                      <a href="index.php?action=newMessage">
-                                        <div class="create-well">
-                                          <i class="fa fa-plus"></i>
-                                          <h1>Message</h1>
-                                        </div>
-                                      </a>
-                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 gutter">
+
+                            <div class="sales report">
+                                <h2>New Message</h2>
+                                <div class='newMessage_container'>
+                                  <div class='row col-md-12'>
+                                    <br />
+                                    <form action="model/createNew.php" method="POST">
+                                      <label for="from">From:</label>
+                                      <label for="subject" style="margin-left:135px;">Subject:</label><br>
+                                      <input type="text" name="from">
+                                      <input type="text" name="subject">
+                                      <br /><br />
+                                      <label for="message">Your Message:</label><br />
+                                      <textarea name="message" style="width:100%; height:120px;"></textarea>
+                                      <br /><br />
+                                      <button type="submit" name="newMessage-submit">Submit</button>
+                                    </form>
                                   </div>
-                                </div>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -136,6 +96,19 @@ $(document).ready(function(){
    $('[data-toggle="offcanvas"]').click(function(){
        $("#navigation").toggleClass("hidden-xs");
    });
+});
+</script>
+<script>
+$(document).ready(function() {
+  $('.newPayment').click(function() {
+    document.getElementById('newPaymentForm').style.display = 'block';
+    document.getElementById('newMessageForm').style.display = 'none';
+  });
+  $('.newMessage').click(function() {
+    document.getElementById('newMessageForm').style.display = 'block';
+    document.getElementById('newPaymentForm').style.display = 'none';
+
+  });
 });
 </script>
 <?php include 'views/dashboard-footer.php'; ?>

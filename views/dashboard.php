@@ -13,86 +13,14 @@
                 <div class="navi">
                     <ul>
                         <li class="active"><a href="index.php?action=dashboard"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Dashboard</span></a></li>
+                        <?php if ($_SESSION['renterID'] == 0) {echo "<li><a href='index.php?action=create'><i class='fa fa-plus' aria-hidden='true'></i><span class='hidden-xs hidden-sm'>Create</span></a></li>";} ?>
                         <li><a href="index.php?action=messages"><i class="fa fa-envelope" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Messages</span></a></li>
                         <li><a href="index.php?action=payments"><i class="fa fa-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Payments</span></a></li>
                         <li><a href="index.php?action=maintenance"><i class="fa fa-support" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Maintenance</span></a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-md-10 col-sm-11 display-table-cell v-align">
-                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                <div class="row">
-                    <header>
-                        <div class="col-md-7">
-                            <nav class="navbar-default pull-left">
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                </div>
-                            </nav>
-                            <div class="search hidden-xs hidden-sm">
-                                <input type="text" placeholder="Search" id="search">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="header-rightside">
-                                <ul class="list-inline header-top pull-right">
-                                    <li><a href="index.php?action=messages"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle icon-info" data-toggle="dropdown">
-                                            <i class="fa fa-bell" aria-hidden="true"></i>
-                                            <span class="label label-primary">
-                                              <?php
-                                                include_once 'includes/database.php';
-                                                $sql = "SELECT paymentPaid FROM payment WHERE paymentPaid = '0' AND renterID = $_SESSION[renterID]";
-                                                $result1 = mysqli_query($conn, $sql);
-                                                $openPayments = mysqli_num_rows($result1);
-                                                $sql = "SELECT status FROM maintenance WHERE status = '0' AND renterID = $_SESSION[renterID]";
-                                                $result2 = mysqli_query($conn, $sql);
-                                                $openMaintenance = mysqli_num_rows($result2);
-                                                $notifications = $openPayments + $openMaintenance;
-                                                // echo $openPayments;
-                                                // echo $openMaintenance;
-                                                echo $notifications;
-                                              ?>
-                                            </span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                          <li><?php echo "$openPayments payment(s) due"; ?></li>
-                                          <li><?php echo "$openMaintenance request(s) open"; ?></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i>
-                                            <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="navbar-content">
-                                                    <span><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></span>
-                                                    <p class="text-muted small">
-                                                        <?php if ($_SESSION['renterID'] == 0) {
-                                                          echo "Admin";
-                                                        } else {
-                                                          echo "Apt #$_SESSION[apt]";
-                                                        } ?>
-                                                    </p>
-                                                    <div class="divider">
-                                                    </div>
-                                                    <a href="#" class="view btn-sm active">View Profile</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><form action="includes/logout.php" method="post"><button type="submit" name="logout-submit" class="link-button"><i class="fa fa-sign-out" aria-hidden="true"></i></button></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </header>
-                </div>
+            <?php include 'views/dashboard-header.php'; ?>
                 <div class="user-dashboard">
                     <h1>Hello, <?php echo $_SESSION['firstName'] ?></h1>
                     <div class="row">
@@ -115,7 +43,7 @@
                                       </tr>
                                   </thead>
                                 <?php
-                                // include_once 'includes/database.php';
+                                // include_once 'model/database.php';
                                 if ($_SESSION['renterID'] == 0){
                                   $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID ORDER BY paymentPaid ASC, paymentDate ASC LIMIT 5";
                                 } else {
@@ -145,7 +73,7 @@
                                   echo "<tr><td colspan='4'>No payments at this time</td></tr>";
                                 }
                                 if ($resultCheck >= 5) {
-                                  echo "<tr><td align='right' colspan='4'><a href='index.php?action=payments'>View All Payments</a></td></tr>";
+                                  echo "<tr><td align='right' colspan='5'><a href='index.php?action=payments'>View All Payments</a></td></tr>";
                                 }
                                 ?>
                                   </table>
@@ -172,7 +100,7 @@
                                       </tr>
                                   </thead>
                                 <?php
-                                include_once 'includes/database.php';
+                                include_once 'model/database.php';
                                 if ($_SESSION['renterID'] == 0){
                                   $sql = "SELECT firstName, lastName, maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID ORDER BY status ASC, urgency ASC LIMIT 5";
                                 } else {
@@ -202,7 +130,7 @@
                                   echo "<tr><td colspan='4'>No maintenance requests at this time</td></tr>";
                                 }
                                 if ($resultCheck >= 5) {
-                                  echo "<tr><td align='right' colspan='4'><a href='index.php?action=payments'>View All Requests</a></td></tr>";
+                                  echo "<tr><td align='right' colspan='5'><a href='index.php?action=payments'>View All Requests</a></td></tr>";
                                 }
                                 ?>
                                   </table>

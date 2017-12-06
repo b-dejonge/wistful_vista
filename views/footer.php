@@ -48,7 +48,7 @@
         <li><a href="index.php?action=apartments">Apartments</a></li>
         <li><a href="index.php?action=contact">Contact</a></li>
         <?php if(isset($_SESSION['renterID'])){echo '<li><a href="index.php?action=dashboard">Dashboard</a></li>';}?>
-        <li><?php if(isset($_SESSION['renterID'])){echo '<form action="includes/logout.php" method="post"><button type="submit" class="footer-nav-logout-button" name="logout-submit">Logout</button></form>';} else { echo '<a href="index.php?action=login">Login/Register</a>';}?></li>
+        <li><?php if(isset($_SESSION['renterID'])){echo '<form action="model/logout.php" method="post"><button type="submit" class="footer-nav-logout-button" name="logout-submit">Logout</button></form>';} else { echo '<a href="index.php?action=login">Login/Register</a>';}?></li>
       </ul>
   </div>
 </div>
