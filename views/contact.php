@@ -40,25 +40,24 @@
                     </div>
                     <div class="contact-page-contents clearfix">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-sm-5">
                                 <i class="fa fa-map-marker"></i>
                                 <div class="contents">
                                     <h6 class="title">Mailing Address</h6>
                                     <address>
-                                        95 Amphitheatre Parkway
-                                        Mountain View CA,
-                                        United States
+                                        123 Beach Rd<br />
+                                        Miami, FL 29850
                                     </address>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-sm-7">
                                 <i class="fa fa-phone"></i>
                                 <div class="contents">
                                     <h5 class="title">Contact Info</h5>
                                     <ul>
-                                        <li>Phone: (123) 45678910</li>
-                                        <li>Mail: company@domain.com</li>
-                                        <li>Fax: +84 962 216 601</li>
+                                        <li>Phone: (123)456-7890</li>
+                                        <li>E-Mail: contact@wistfulvista.com</li>
+                                        <li>Fax: (098)765-4321</li>
                                     </ul>
                                 </div>
                             </div>
@@ -76,16 +75,16 @@
                         <input id="email" name="email" type="text" placeholder="Your Email *" aria-describedby="email-notes" aria-required="true" required="required">
                     </p>
                     <p class="form-phone common">
-                        <input id="phone" name="phone" type="text" placeholder="Your Phone Number *" aria-required="true" required="required" >
+                        <input id="phone" name="phone" type="text" placeholder="Your Phone Number *" aria-required="true" required="required">
                     </p>
                     <p class="form-subject common">
-                        <input id="subject" name="subject" type="text" placeholder="subject">
+                        <input id="subject" name="subject" type="text" placeholder="Subject *" aria-required="true" required="required">
                     </p>
                     <p class="form-comment">
                         <textarea id="message" name="message" placeholder="Comment" cols="45" rows="8" ></textarea>
                     </p>
                     <p class="form-submit">
-                        <button type="submit" id="submit-button" class="submit-btn btn btn-default btn-lg btn-3d" data-hover="Post Comment">Post Comment</button>
+                        <button type="submit" id="submit-button" class="submit-btn btn btn-default btn-lg" data-hover="Post Comment">Post Comment</button>
                     </p>
                 </form>
             </div>

@@ -41,10 +41,7 @@ if (isset($_POST['register-submit'])){
           $sql = "SELECT * FROM renter WHERE username='$username'";
       		$result = mysqli_query($conn, $sql);
       		$resultCheck = mysqli_num_rows($result);
-      		if ($resultCheck < 1) {
-      			header("Location: ../index.php?action=login?error=usernametaken");
-      			exit();
-      		} else {
+
       			if ($row = mysqli_fetch_assoc($result)) {
       					//Log in the user here
                 session_start();
@@ -59,7 +56,6 @@ if (isset($_POST['register-submit'])){
       			}
           }
         }
-      }
 } else {
   header("Location: ../index.php?action=login");
   exit();

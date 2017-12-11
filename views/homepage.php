@@ -47,7 +47,7 @@
     <div class="col-xs-12 gutter">
       <div class="col-lg-4 col-xs-12">
         <div class="featuredApt">
-          <img src="http://via.placeholder.com/350x233">
+          <img src="./views/images/apartments/1.jpg">
           <div class="featuredApt-contents">
             <div class="featuredApt-header clearfix">
               <div class="pull-left">
@@ -67,7 +67,7 @@
       </div>
       <div class="col-lg-4 col-xs-12">
         <div class="featuredApt">
-          <img src="http://via.placeholder.com/350x233">
+          <img src="./views/images/apartments/2.jpg">
           <div class="featuredApt-contents">
             <div class="featuredApt-header clearfix">
               <div class="pull-left">
@@ -87,7 +87,7 @@
       </div>
       <div class="col-lg-4 col-xs-12">
         <div class="featuredApt">
-          <img src="http://via.placeholder.com/350x233">
+          <img src="./views/images/apartments/3.jpg">
           <div class="featuredApt-contents">
             <div class="featuredApt-header clearfix">
               <div class="pull-left">

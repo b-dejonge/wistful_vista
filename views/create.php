@@ -51,8 +51,8 @@
                                       ?>
                                       </select>
                                       <br /><br />
-                                      <label for="amount">Amount:</label>
-                                      <input type="tel" name="amount" placeholder="$000.00" style="width:195px">
+                                      <label for="amount">Amount: $</label>
+                                      <input type="tel" name="amount" placeholder="000.00" style="width:195px">
                                       <br /><br />
                                       <label for="paymentDate">Payment Date:</label>
                                       <input type="date" name="paymentDate">

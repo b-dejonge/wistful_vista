@@ -38,7 +38,7 @@
                     <input type="text" name="lastName" id="lastName" tabindex="1" class="form-control" placeholder="Last Name" value="">
                   </div>
                   <div class="form-group">
-                    <input type="text" name="address" id="apt" tabindex="1" class="form-control" placeholder="Apt #" value="">
+                    <input type="text" name="apt" id="apt" tabindex="1" class="form-control" placeholder="Apt #" value="">
                   </div>
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
