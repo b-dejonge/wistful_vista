@@ -16,6 +16,17 @@
               <form id="login-form" action="model/login.php" method="post" role="form" style="display: block;">
                 <h2>LOGIN</h2>
                   <div class="form-group">
+                    <?php
+                    if (isset($_GET['error']) && $_GET['error']=='usernamenotfound'){
+                      echo "<span style='color:red'>Username not found</span>";
+                    }elseif (isset($_GET['error']) && $_GET['error']=='invalidpassword'){
+                      echo "<span style='color:red'>Invalid password</span>";
+                    } else {
+                      //do nothing
+                    }
+                    ?>
+                  </div>
+                  <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
                   <div class="form-group">
@@ -32,19 +43,30 @@
               <form id="register-form" action="model/signup.php" method="post" role="form" style="display: none;">
                 <h2>REGISTER</h2>
                   <div class="form-group">
-                    <input type="text" name="firstName" id="firstName" tabindex="1" class="form-control" placeholder="First Name" value="">
+                    <?php
+                    if (isset($_GET['error']) && $_GET['error']=='invalidname'){
+                      echo "<span style='color:red'>Invalid name</span>";
+                    }elseif (isset($_GET['error']) && $_GET['error']=='usernametaken'){
+                      echo "<span style='color:red'>Username taken</span>";
+                    } else {
+                      //do nothing
+                    }
+                    ?>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="lastName" id="lastName" tabindex="1" class="form-control" placeholder="Last Name" value="">
+                    <input type="text" name="firstName" id="firstName" tabindex="1" class="form-control" placeholder="First Name" value="" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="apt" id="apt" tabindex="1" class="form-control" placeholder="Apt #" value="">
+                    <input type="text" name="lastName" id="lastName" tabindex="1" class="form-control" placeholder="Last Name" value="" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                    <input type="text" name="apt" id="apt" tabindex="1" class="form-control" placeholder="Apt #" value="" required>
                   </div>
                   <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
                   </div>
                   <div class="form-group">
                     <div class="row">

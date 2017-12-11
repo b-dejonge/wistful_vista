@@ -40,7 +40,8 @@
                                       <tr>
                                           <th>ID</th>
                                           <?php if ($_SESSION['renterID'] == 0) {
-                                            echo "<th>Name</th>";
+                                            echo "<th>Name</th>
+                                                  <th>Apt #</th>";
                                           }?>
                                           <th>Urgency</th>
                                           <th>Description</th>
@@ -54,7 +55,7 @@
                                 <?php
                                 include_once 'model/database.php';
                                 if ($_SESSION['renterID'] == 0){
-                                  $sql = "SELECT firstName, lastName, maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID ORDER BY status ASC, urgency ASC";
+                                  $sql = "SELECT firstName, lastName, apt, maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID ORDER BY status ASC, urgency ASC";
 
                                 } else {
                                   $sql = "SELECT maintenanceID, urgency, description, date, status FROM renter, maintenance WHERE renter.renterID = maintenance.renterID AND $_SESSION[renterID] = renter.renterID ORDER BY status ASC, urgency ASC";
@@ -68,7 +69,8 @@
                                     "<tr>
                                         <td>$row[maintenanceID]</td>";
                                         if ($_SESSION['renterID'] == 0) {
-                                          echo "<td>$row[firstName] $row[lastName]</td>";
+                                          echo "<td>$row[firstName] $row[lastName]</td>
+                                                <td>$row[apt]</td>";
                                         }
                                   echo "<td>$row[urgency]</td>
                                         <td class='description'>$row[description]</td>
@@ -79,7 +81,7 @@
                                             <td class='text-center'><form action='model/closeRequest.php' method='POST' style='margin-bottom:0;'><button class='btn btn-danger btn-sm' type='submit' name='closeRequest-submit' value='$row[maintenanceID]'><i class='fa fa-times' aria-hidden='true'> Close</i></button></form></td>";
                                           } else {
                                             echo "<td>Closed</td>
-                                            <td class='text-center'></td>";
+                                            <td class='text-center'>None</td>";
                                           }
                                         } else {
                                         if ($row['status'] == '0'){

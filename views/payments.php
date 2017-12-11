@@ -36,6 +36,9 @@
                                       <tr>
                                           <th>ID</th>
                                           <th>Name</th>
+                                          <?php if ($_SESSION['renterID'] == 0) {
+                                            echo "<th>Apt #</th>";
+                                          }?>
                                           <th>Ammount</th>
                                           <th>Due Date</th>
                                           <?php if ($_SESSION['renterID'] == 0) {
@@ -49,7 +52,7 @@
                                 <?php
                                 include_once 'model/database.php';
                                 if ($_SESSION['renterID'] == 0){
-                                  $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID ORDER BY paymentPaid ASC, paymentDate ASC";
+                                  $sql = "SELECT firstName, lastName, apt, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID ORDER BY paymentPaid ASC, paymentDate ASC";
 
                                 } else {
                                   $sql = "SELECT firstName, lastName, paymentID, paymentAmount, paymentDate, paymentPaid FROM renter, payment WHERE renter.renterID = payment.renterID AND $_SESSION[renterID] = renter.renterID ORDER BY paymentPaid ASC, paymentDate ASC";
@@ -62,8 +65,11 @@
                                     echo
                                     "<tr>
                                         <td>$row[paymentID]</td>
-                                        <td>$row[firstName] $row[lastName]</td>
-                                        <td>$row[paymentAmount]</td>
+                                        <td>$row[firstName] $row[lastName]</td>";
+                                        if ($_SESSION['renterID'] == 0) {
+                                          echo "<td>$row[apt]</td>";
+                                        }
+                                        echo "<td>$row[paymentAmount]</td>
                                         <td>";echo date ('F d, Y', strtotime($row['paymentDate'])); echo "</td>";
                                         if ($_SESSION['renterID'] == 0) {
                                           if ($row['paymentPaid'] == '0') {

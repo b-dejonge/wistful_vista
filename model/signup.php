@@ -5,10 +5,6 @@ if (isset($_POST['register-submit'])){
 
   $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
   $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
-  // $address = mysqli_real_escape_string($conn, $_POST['address']);
-  // $city = mysqli_real_escape_string($conn, $_POST['city']);
-  // $state = mysqli_real_escape_string($conn, $_POST['state']);
-  // $zip = mysqli_real_escape_string($conn, $_POST['zip']);
   $apt = mysqli_real_escape_string($conn, $_POST['apt']);
   $username = mysqli_real_escape_string($conn, $_POST['username']);
   $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -16,12 +12,12 @@ if (isset($_POST['register-submit'])){
   //Error handlers
   //Check for empty fields
   if (empty($firstName) || empty($lastName) || empty($username) || empty($password)) {
-    header("Location: ../index.php?action=login?signup=empty");
+    header("Location: ../index.php?action=login&error=empty");
     exit();
   } else {
     //Check if input characters are valid
     if (!preg_match("/^[a-zA-Z]*$/", $firstName) || !preg_match("/^[a-zA-Z]*$/", $lastName)) {
-      header("Location: ../index.php?action=login?signup=invalidname");
+      header("Location: ../index.php?action=login&error=invalidname");
       exit();
       } else {
         $sql = "SELECT * FROM renter WHERE username='$username'";
@@ -29,7 +25,7 @@ if (isset($_POST['register-submit'])){
         $resultCheck = mysqli_num_rows($result);
 
         if ($resultCheck > 0) {
-          header("Location: ../index.php?action=login?signup=invalidusername");
+          header("Location: ../index.php?action=login&error=usernametaken");
           exit();
         } else {
           //Hashing the password

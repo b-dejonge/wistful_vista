@@ -23,7 +23,7 @@ if (isset($_GET['action']))
     if (isset($_SESSION['firstName'])) {
       include ('views/dashboard.php');
     } else {
-      include ('views/signin.php');
+      header('Location: index.php?action=login');
     }
   }
 

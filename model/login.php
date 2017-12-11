@@ -10,25 +10,26 @@ if (isset($_POST['login-submit'])) {
 	//Error handlers
 	//Check if inputs are empty
 	if (empty($username) || empty($password)) {
-		header("Location: ../index.php?login=empty");
+		header("Location: ../index.php?action=login&error=empty");
 		exit();
 	} else {
 		$sql = "SELECT * FROM renter WHERE username='$username'";
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
 		if ($resultCheck < 1) {
-			header("Location: ../index.php?login=error1");
+			header("Location: ../index.php?action=login&error=usernamenotfound");
 			exit();
 		} else {
 			if ($row = mysqli_fetch_assoc($result)) {
 				//De-hashing the password
 				$hashedPwdCheck = password_verify($password, $row['password']);
 				if ($hashedPwdCheck == false) {
-					header("Location: ../index.php?login=error2");
+					header("Location: ../index.php?action=login&error=invalidpassword");
 					exit();
 				} elseif ($hashedPwdCheck == true) {
 					//Log in the user here
-          session_start();
+					session_destroy();
+					session_start();
 					$_SESSION['renterID'] = $row['renterID'];
 					$_SESSION['firstName'] = $row['firstName'];
 					$_SESSION['lastName'] = $row['lastName'];
@@ -41,7 +42,7 @@ if (isset($_POST['login-submit'])) {
 		}
 	}
 } else {
-	header("Location: ../index.php?login=error0");
+	header("Location: ../index.php?login=error");
 	exit();
 }
 
